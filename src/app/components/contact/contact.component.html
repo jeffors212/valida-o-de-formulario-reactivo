@@ -1,0 +1,38 @@
+<div class="form-container">
+<h1>Contact us</h1>
+<form [formGroup]="contactForm" (ngSubmit)="onSaveForm()">
+  <input type="text" formControlName="name" placeholder="Your Name Please">
+  <div class="alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+     <div class=" container-error-message" *ngIf="name.errors.required">
+       Name is required
+    </div>
+    <div class=" container-error-message" *ngIf="name.errors.minLength">
+      Name must be at least 5 characters long.
+   </div>
+  </div>
+
+  <input type="text" formControlName="email" placeholder="Your email Please">
+
+  <div class="alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+    <div class=" container-error-message" *ngIf="email.errors.required">
+      Email is required
+   </div>
+   <div class=" container-error-message" *ngIf="email.errors.minLength">
+    Email must be at least 5 characters long.
+  </div>
+  <div class=" container-error-message" *ngIf="(email.dirty || email.touched ) && email.invalid && email.parent">
+    value has to be a valid email address.
+  </div>
+ </div>
+  <textarea formControlName="message" placeholder="Type your message"></textarea>
+  <div class="alert-danger" *ngIf="message.invalid && (message.dirty || message.touched)">
+    <div class=" container-error-message" *ngIf="message.errors.required">
+      Message is required
+   </div>
+   <div class=" container-error-message" *ngIf="message.errors.minLength">
+    Message must be at least 10 characters long.
+  </div>
+ </div>
+    <button type="submit" class="btn-send">Send</button>
+</form>
+</div>
